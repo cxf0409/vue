@@ -1,51 +1,20 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-// import store from './store'
-import Vuex from 'vuex'
+import Vue from "vue";
+import App from "./App.vue";
+import VueRouter from "vue-router";
+import routes from "./routes";
+import store from "./store"
 
+Vue.config.productionTip = false;
 
+Vue.use(VueRouter);
 
-Vue.use(Vuex)
-Vue.config.productionTip = false
-
-const store=new Vuex.Store({
-  state:{
-    count:100,
-    message:1
-  },
-  mutations:{
-    increment(state,n){
-           
-           if(state.count>0){
-            
-             state.count-=n;
-           }
-           
-    },
-    increment2(state){
-      state.count-=2;
-   }
-  },
-  // actions:{
-  //   increment2(action){
-  //      setTimeout(()=>{
-  //        action.commit('increment')
-  //      },2000);
-  //   }
-  // },
-  getters:{
-    doubleCount(state){
-      return state.count*2
-    }
-  }
+const router = new VueRouter({
+  mode:'history',
+  routes
 })
 
-
-
-
 new Vue({
-  router,
   store,
+  router,
   render: h => h(App)
-}).$mount('#app')
+}).$mount("#app");
